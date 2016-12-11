@@ -13,14 +13,11 @@ const DateLabel = (props) => {
   }
 
   return (
-    <span className={props.className}>
-      {dateLabel}
-    </span>
+    <span>{dateLabel}</span>
   )
 }
 
 DateLabel.propTypes = {
-  className: PropTypes.string,
   relative: PropTypes.boolean,
   date: PropTypes.string.isRequired,
 }

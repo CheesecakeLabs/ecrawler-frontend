@@ -9,6 +9,8 @@ const styles = {}
 
 // setup text colors.
 styles['colors-primary'] = '#0000ff'
+styles['colors-gray'] = '#afafaf'
+styles['colors-drakgray'] = '#444444'
 
 // setup media breakpoints
 styles['media-lg'] = '1200px'
