@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 
-import DateLabel from '../date-label'
+import DateLabel from '../../../../components/date-label'
 
 import styles from './styles.css'
 
 
-const EntityCard = (props) => (
+const FilterCard = (props) => (
   <div className={styles.container}>
     <div className={styles.name}>
       {props.name}
@@ -16,10 +16,10 @@ const EntityCard = (props) => (
   </div>
 )
 
-EntityCard.propTypes = {
+FilterCard.propTypes = {
   name: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
 }
 
 
-export default EntityCard
+export default FilterCard

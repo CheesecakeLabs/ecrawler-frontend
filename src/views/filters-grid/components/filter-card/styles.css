@@ -1,5 +1,4 @@
 .container {
-  display: inline-block;
   max-width: 300px;
   border: 1px solid var(--colors-gray);
   border-radius: 5px;

@@ -1,0 +1,12 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.item {
+  flex-basis: calc(25% - 20px);
+  align-self: center;
+  margin: 10px;
+}
