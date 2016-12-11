@@ -2,21 +2,18 @@
 
 /*
   @TODO: find a way to listen to changes on webpack for this file.
-  @INFO: The colors names could be get in http://chir.ag/projects/name-that-color/
 */
 
-// const styles = {}
-// const colors = {
-//   Eg: 'white': '#FFFFFF',
-// }
-
-// const typography = {
-//   Eg: 'primary': 'Oxygen, Arial, sans-serif',
-// }
+const styles = {}
 
 
 // setup text colors.
-// Eg: styles['colorText-light'] = colors['white']
+styles['colors-primary'] = '#0000ff'
+
+// setup media breakpoints
+styles['media-lg'] = '1200px'
+styles['media-md'] = '992px'
+styles['media-sm'] = '768px'
 
 // setup link colors.
 // Eg: styles['linkColor-default'] = colors['white']
@@ -34,4 +31,4 @@
 // Eg: styles['zIndex-low'] = '-10'
 
 
-// module.exports = styles
+module.exports = styles

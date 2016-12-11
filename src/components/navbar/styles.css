@@ -1,0 +1,9 @@
+.outter {
+  width: 100vw;
+  background-color: var(--colors-primary);
+}
+
+.inner {
+  max-width: var(--media-lg);
+  padding: 10px;
+}
