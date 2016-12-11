@@ -8,7 +8,7 @@ const styles = {}
 
 
 // setup text colors.
-styles['colors-primary'] = '#0000ff'
+styles['colors-primary'] = '#f0f0f0'
 styles['colors-gray'] = '#afafaf'
 styles['colors-drakgray'] = '#444444'
 

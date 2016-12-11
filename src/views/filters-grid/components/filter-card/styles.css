@@ -3,16 +3,14 @@
   border: 1px solid var(--colors-gray);
   border-radius: 5px;
   padding: 30px;
+  color: var(--colors-darkGray);
+  text-align: center;
 }
 
 .name {
   font-size: 30px;
-  color: var(--colors-primary);
-  text-align: center;
 }
 
 .date {
   font-size: 14px;
-  color: var(--colors-darkGray);
-  text-align: center;
 }
