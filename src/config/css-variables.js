@@ -17,20 +17,8 @@ styles['media-lg'] = '1200px'
 styles['media-md'] = '992px'
 styles['media-sm'] = '768px'
 
-// setup link colors.
-// Eg: styles['linkColor-default'] = colors['white']
-
-// setup border colors.
-// Eg: styles['borderColor-primary'] = colors['buttercup']
-
-// setup background colors.
-// Eg: styles['backgroundColor-main'] = colors['ebonyClay']
-
-// setup typography.
-// Eg: styles['fontPrimary'] = typography['primary']
-
-// z-indices
-// Eg: styles['zIndex-low'] = '-10'
+// setup fonts
+styles['font-primary'] = 'Roboto, sans-serif'
 
 
 module.exports = styles
