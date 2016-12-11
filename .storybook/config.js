@@ -1,11 +1,11 @@
 import { configure } from '@kadira/storybook'
 
-function loadStories() {
-  /* eslint-disable global-require */
-  require('../stories/index.js')
-  /* eslint-enable global-require */
+const requireAll = (requireContext) => (
+  requireContext.keys().map(requireContext)
+)
 
-  // You can require as many stories as you need.
-}
+const loadStories = () => (
+  requireAll(require.context('../src', true, /stories\.js/))
+)
 
 configure(loadStories, module)
