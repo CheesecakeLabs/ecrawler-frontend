@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/CheesecakeLabs/ecrawler-frontend/issues"
   },
-  "homepage": "https://github.com/CheesecakeLabs/ecrawler-frontend#readme"
+  "homepage": "https://github.com/CheesecakeLabs/ecrawler-frontend#readme",
+  "dependencies": {
+    "ejs": "2.4.1",
+    "express": "4.13.3"
+  }
 }
