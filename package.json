@@ -7,7 +7,7 @@
   "repository": "",
   "scripts": {
     "start": "node server.js",
-    "dev": "NODE_ENV=development PORT=8080 node server.dev.js",
+    "dev": "NODE_ENV=development PORT=8080 BACKEND_DOMAIN=ecrawler-backend.herokuapp.com node server.dev.js",
     "dev-mock": "NODE_ENV=development PORT=8080 DRY_RUN=yes node server.dev.js",
     "build": "NODE_ENV=production webpack --config webpack.config.production.js -p --stats",
     "lint": "eslint src server",

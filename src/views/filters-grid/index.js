@@ -1,37 +1,56 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import autobind from 'autobind-decorator'
 
+import { getFilters } from '../../modules/filters/actions'
 import FilterCard from './components/filter-card'
 
 import styles from './styles.css'
 
-const propsFilters = [
-  { id: 1, name: 'Cheesecake Labs', date: '2016-12-06T12:00:00Z' },
-  { id: 2, name: 'SingularityU', date: '2016-11-06T12:00:00Z' },
-  { id: 3, name: 'Lockitron', date: '2016-10-06T12:00:00Z' },
-  { id: 4, name: 'Forgetter', date: '2016-09-06T12:00:00Z' },
-  { id: 5, name: 'Menud', date: '2016-08-06T12:00:00Z' },
-  { id: 6, name: 'Médico na Hora', date: '2016-07-06T12:00:00Z' },
-  { id: 7, name: 'Fishbit', date: '2016-06-06T12:00:00Z' },
-  { id: 8, name: 'Bond', date: '2016-05-06T12:00:00Z' },
-]
 
+const mapStateToProps = (state) => {
+  const { filters } = state
+  return { filters }
+}
 
-const FiltersGrid = () => {
-  const renderFilters = (filters) => (
-    filters.map((filter) => (
-      <div className={styles.item} key={filter.id}>
-        <FilterCard name={filter.name} date={filter.date} />
-      </div>
-    ))
-  )
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    getFilters,
+  }, dispatch)
+)
 
-  return (
-    <section className={styles.grid}>
-      {propsFilters &&
-        renderFilters(propsFilters)
-      }
-    </section>
-  )
+@connect(mapStateToProps, mapDispatchToProps)
+class FiltersGrid extends Component {
+
+  @autobind
+  componentWillMount() {
+    this.props.getFilters()
+  }
+
+  @autobind
+  render() {
+    const renderFilters = (filters) => (
+      filters.map((filter) => (
+        <div className={styles.item} key={filter.id}>
+          <FilterCard name={filter.name} date={filter.date} />
+        </div>
+      ))
+    )
+
+    return (
+      <section className={styles.grid}>
+        {this.props.filters &&
+          renderFilters(this.props.filters)
+        }
+      </section>
+    )
+  }
+}
+
+FiltersGrid.propTypes = {
+  filters: PropTypes.array.isRequired,
+  getFilters: PropTypes.func.isRequired,
 }
 
 

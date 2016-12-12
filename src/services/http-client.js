@@ -1,12 +1,14 @@
 import axios from 'axios'
 import storageService from './storage-service'
+import Config from '../config/api'
+
 
 export default {
   // generic methods with Authorization
   get(url, payload = {}) {
     return axios({
       method: 'get',
-      url,
+      url: Config.API_URL + url,
       params: payload,
       headers: { Authorization: storageService().get('auth-token') },
     })
@@ -15,7 +17,7 @@ export default {
   post(url, payload = {}) {
     return axios({
       method: 'post',
-      url,
+      url: Config.API_URL + url,
       data: payload,
       headers: { Authorization: storageService().get('auth-token') },
     })
@@ -24,7 +26,7 @@ export default {
   patch(url, payload = {}) {
     return axios({
       method: 'patch',
-      url,
+      url: Config.API_URL + url,
       data: payload,
       headers: { Authorization: storageService().get('auth-token') },
     })
@@ -33,7 +35,7 @@ export default {
   delete(url = {}) {
     return axios({
       method: 'delete',
-      url,
+      url: Config.API_URL + url,
       headers: { Authorization: storageService().get('auth-token') },
     })
   },
