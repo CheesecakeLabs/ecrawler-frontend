@@ -11,14 +11,18 @@ const FilterCard = (props) => (
       {props.name}
     </div>
     <div className={styles.date}>
-      <DateLabel date={props.date} relative />
+      {props.date
+        ? <DateLabel date={props.date} relative />
+        : 'No emails so far'
+      }
     </div>
   </div>
 )
 
 FilterCard.propTypes = {
   name: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
+  total: PropTypes.integer,
 }
 
 

@@ -33,7 +33,11 @@ class FiltersGrid extends Component {
     const renderFilters = (filters) => (
       filters.map((filter) => (
         <div className={styles.item} key={filter.id}>
-          <FilterCard name={filter.name} date={filter.date} />
+          <FilterCard
+            name={filter.name}
+            date={filter.last_mail_date}
+            total={filter.total_mails}
+          />
         </div>
       ))
     )
