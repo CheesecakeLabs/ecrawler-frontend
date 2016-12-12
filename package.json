@@ -1,7 +1,7 @@
 {
-  "name": "woovit-marketplace",
+  "name": "ecrawler-frontend",
   "version": "0.1.0",
-  "description": "Marketplace for publisher and creators on Woovit.",
+  "description": "Get informed about your emails.",
   "main": "lib/index.js",
   "license": "MIT",
   "repository": "",
