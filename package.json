@@ -15,8 +15,8 @@
     "validate": "npm ls",
     "heroku-postbuild": "npm run build"
   },
-  "devEngines": {
-    "node": "6.0.0"
+  "engines": {
+    "node": "5.10.0"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.29.0",
