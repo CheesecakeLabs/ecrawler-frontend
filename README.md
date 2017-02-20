@@ -1,5 +1,4 @@
-# Mazz web
-Estimate the construction size of a given land, based on city's restrictions.
+# E-Crawler frontend app
 
 
 ## Getting started
