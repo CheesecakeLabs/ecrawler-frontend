@@ -17,10 +17,6 @@ const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 if (process.env.NODE_ENV === 'development') {
-  /* eslint-disable global-require */
-  const createDevToolsWindow = require('./utils/dev-tools/create-dev-tools-window').default
-  /* eslint-enable global-require */
-  createDevToolsWindow(store)
   immutableDevtools(immutable)
 }
 

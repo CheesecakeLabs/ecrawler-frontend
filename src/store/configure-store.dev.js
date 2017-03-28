@@ -6,7 +6,6 @@ import { browserHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
 import { persistState } from 'redux-devtools'
 import rootReducer from '../modules/reducers'
-import DevTools from '../utils/dev-tools/dev-tools'
 
 
 const logger = createLogger({
@@ -25,7 +24,6 @@ const configureStore = (preloadedState) => {
     preloadedState,
     compose(
       applyMiddleware(thunk, router, logger),
-      DevTools.instrument(),
       persistState(
         window.location.href.match(
           /[?&]debug_session=([^&]+)\b/
