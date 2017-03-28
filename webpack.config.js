@@ -44,14 +44,18 @@ module.exports = {
       exclude: /node_modules/,
       loader: ExtractTextPlugin.extract(
         'style-loader',
-        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader' // eslint-disable-line
+        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader' // eslint-disable-line max-len
       ),
     }, {
       test: /\.(jpe?g|png)$/i,
       loaders: [
         'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
+        'image-webpack?bypassOnDebug',
       ],
+      options: {
+        interlaced: false,
+        optimizationLevel: 7,
+      },
     }],
   },
   postcss: () => postCSSConfig,
