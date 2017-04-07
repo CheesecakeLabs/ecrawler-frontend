@@ -11,7 +11,8 @@
       "allow": ["info", "warn", "error"]
     }],
     "semi": [2, "never"],
-    "no-multiple-empty-lines": 2
+    "no-multiple-empty-lines": 2,
+    "react/jsx-filename-extension": "off"
   },
   "plugins": [
     "react"
