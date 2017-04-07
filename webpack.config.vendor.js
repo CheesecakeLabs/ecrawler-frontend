@@ -7,6 +7,7 @@ module.exports = {
     vendor: [
       '@ckldeveloper/fetch',
       'immutable',
+      'moment',
       'react',
       'react-dom',
       'react-immutable-proptypes',
