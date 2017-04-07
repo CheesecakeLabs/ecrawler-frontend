@@ -4,26 +4,13 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/index',
-  ],
+  entry: './src/server.js',
+  target: 'node',
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist-server'),
+    filename: 'server.js',
     publicPath: '/static/',
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development'),
-        DEVTOOLS_WINDOW: JSON.stringify(process.env.DEVTOOLS_WINDOW),
-      },
-    }),
-    new ExtractTextPlugin('styles.css'),
-  ],
   resolve: {
     modules: [
       path.join(__dirname, 'src'),
@@ -31,11 +18,20 @@ module.exports = {
     ],
     extensions: ['.js'],
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      fetch: () => new Promise(() => {}),
+    }),
+    new ExtractTextPlugin('styles.css'),
+  ],
   module: {
     rules: [{
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
+      options: {
+        presets: ['react'],
+      },
     }, {
       test: /\.css$/,
       include: /node_modules/,
@@ -45,7 +41,6 @@ module.exports = {
           loader: 'css-loader',
           options: {
             modules: false,
-            localIdentName: '[name]__[local]___[hash:base64:5]',
           },
         }],
       }),
@@ -65,12 +60,6 @@ module.exports = {
           loader: 'postcss-loader',
         }],
       }),
-    }, {
-      test: /\.(jpe?g|png)$/i,
-      loaders: [
-        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&interlaced=false&optimizationLevel=7',
-        'image-webpack-loader?bypassOnDebug',
-      ],
     }],
   },
 }

@@ -1,67 +1,88 @@
 const path = require('path')
+
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin')
 
-const postCSSConfig = require('./postcss.config')
+const vendorManifest = require('./dist/vendor-manifest.json')
 
 module.exports = {
-  entry: './src/index',
+  devtool: 'source-map',
+  entry: { production: './src/index' },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
     publicPath: '/static/',
   },
   plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
-        BACKEND_DOMAIN: JSON.stringify(process.env.BACKEND_DOMAIN),
-        DRY_RUN: JSON.stringify(process.env.DRY_RUN),
       },
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      sourceMap: true,
+      compress: {
         screw_ie8: true,
         warnings: false,
       },
     }),
-    new ExtractTextPlugin('main.css'),
-    new webpack.optimize.DedupePlugin(),
+    new ExtractTextPlugin('[name].[chunkhash].css'),
+    new webpack.DllReferencePlugin({
+      context: '.',
+      manifest: vendorManifest,
+    }),
+    new CompressionPlugin({
+      test: /\.(js|css)$/,
+      threshold: 10240,
+    }),
+    new ManifestPlugin({
+      fileName: 'production.stats.json',
+    }),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules',
+    ],
+    extensions: ['.js'],
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'babel-loader',
       exclude: /node_modules/,
     }, {
-      test: /\.json$/,
-      loaders: ['json'],
-      include: /src/,
-    }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'), // eslint-disable-line
-      include: /src/,
-    }, {
-      test: /\.css$/,
-      loader: ExtractTextPlugin.extract('css'),
       include: /node_modules/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: false,
+            minimize: true,
+          },
+        }],
+      }),
     }, {
-      test: /\.svg$/,
-      loader: `svg-sprite?${JSON.stringify({
-        name: '[name]_[hash]',
-        prefixize: true,
-      })}`,
-    }, {
-      test: /\.(jpe?g|png)$/i,
-      loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-      ],
-      include: /src/,
+      test: /\.css$/,
+      exclude: /node_modules/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            minimize: true,
+            importLoaders: 2,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        }, {
+          loader: 'postcss-loader',
+        }],
+      }),
     }],
   },
-  postcss: () => postCSSConfig,
 }
