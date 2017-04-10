@@ -1,8 +1,19 @@
-import httpClient from '../../services/http-client'
+import request from '../../services/request-backend'
+import storageService from '../../services/storage-service'
 
+const enforceArray = element => (Array.isArray(element) ? element : [])
 
 export default {
-  list() {
-    return httpClient.get('filters/')
-  },
+  list: () =>
+    request.get('filters', {
+      headers: {
+        Authorization: `Token ${storageService().get('auth-token')}`,
+      },
+    }).then(filters => enforceArray(filters)),
+
+  runCrawler: () => request.get('crawl', {
+    headers: {
+      Authorization: `Token ${storageService().get('auth-token')}`,
+    },
+  }),
 }
