@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react'
 import moment from 'moment'
 
 
-const DateLabel = (props) => {
-  const fDate = moment(props.date, 'YYYY-MM-DDTHH:mm:ssZ')
+const DateLabel = ({ date, relative }) => {
+  const fDate = moment(date, 'YYYY-MM-DDTHH:mm:ssZ')
   let dateLabel = 'Some time ago'
 
-  if (props.relative) {
+  if (relative) {
     dateLabel = fDate.fromNow()
   } else {
     dateLabel = fDate.format('MM/DD/YYYY')
@@ -18,9 +18,12 @@ const DateLabel = (props) => {
 }
 
 DateLabel.propTypes = {
-  relative: PropTypes.boolean,
   date: PropTypes.string.isRequired,
+  relative: PropTypes.boolean,
 }
 
+DateLabel.defaultProps = {
+  relative: false,
+}
 
 export default DateLabel

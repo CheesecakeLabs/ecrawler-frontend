@@ -6,6 +6,5 @@ defined):
 
 -- component-name/  
 -- -- index.js  
--- -- styles.css *
--- -- stories.js *
+-- -- styles.css *  
 -- -- tests.js *  

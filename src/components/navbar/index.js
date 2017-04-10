@@ -3,7 +3,7 @@ import Image from '../image'
 
 import styles from './styles.css'
 
-const logo = require('../../img/logo.png')
+const logo = require('../../../assets/img/logo.png')
 
 
 const Navbar = () => (
