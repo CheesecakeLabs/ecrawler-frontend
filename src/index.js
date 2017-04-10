@@ -1,38 +1,20 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
 
-import immutable from 'immutable'
-import immutableDevtools from 'immutable-devtools'
-
+import './bootstrap'
 import configureStore from './store/configure-store'
 import routes from './routes'
-
-import './styles/index.css'
-
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
-if (process.env.NODE_ENV === 'development') {
-  /* eslint-disable global-require */
-  const createDevToolsWindow = require('./utils/dev-tools/create-dev-tools-window').default
-  /* eslint-enable global-require */
-  createDevToolsWindow(store)
-  immutableDevtools(immutable)
-}
-
-
 const Root = () => (
   <Provider store={store}>
-    <Router history={history} routes={routes} />
+    <Router history={history} routes={routes(store)} />
   </Provider>
 )
 
-
-ReactDOM.render(
-  <Root store={store} history={history} />,
-  document.getElementById('root')
-)
+render(<Root />, document.getElementById('root'))
