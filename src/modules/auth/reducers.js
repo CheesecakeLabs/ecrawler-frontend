@@ -3,8 +3,6 @@ import { AUTHENTICATE_WITH_GOOGLE } from './actions'
 
 const INITIAL_STATE = null
 
-const token = createReducer(INITIAL_STATE, {
+export const auth = createReducer(INITIAL_STATE, {
   [AUTHENTICATE_WITH_GOOGLE.FULFILLED]: (state, { payload }) => payload,
 })
-
-export default token

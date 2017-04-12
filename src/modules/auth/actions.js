@@ -1,4 +1,4 @@
-import authenticate from './services'
+import { authenticate } from './services'
 import defineAction from '../../utils/define-action'
 
 export const AUTHENTICATE_WITH_GOOGLE = defineAction('AUTHENTICATE_WITH_GOOGLE')

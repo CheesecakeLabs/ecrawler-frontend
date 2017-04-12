@@ -43,15 +43,13 @@ class GmailLogin extends Component {
 }
 
 GmailLogin.propTypes = {
-  socialId: PropTypes.string,
-  scope: PropTypes.string,
-  authenticateWithGoogle: PropTypes.func,
+  socialId: PropTypes.string.isRequired,
+  scope: PropTypes.string.isRequired,
+  authenticateWithGoogle: PropTypes.func.isRequired,
 }
 
 GmailLogin.defaultProps = {
-  socialId: null,
-  scope: 'private',
-  authenticateWithGoogle: null,
+  authenticateWithGoogle,
 }
 
 export default GmailLogin

@@ -6,7 +6,7 @@ import Login from './views/login'
 import Dashboard from './views/dashboard'
 import NotFound from './views/not-found'
 
-export const isLoggedIn = user => user && !!user.token
+export const isLoggedIn = (user) => user && !!user.auth
 
 export const userLoginRequired = store => (nextState, replace) => {
   const user = store.getState()

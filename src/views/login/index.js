@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
 import { authenticateWithGoogle } from '../../modules/auth/actions'
 import GmailLogin from './components/gmail-login'
 import styles from './styles.css'
-import constants from '../../config/constants'
+import { socialId } from '../../config/constants'
 
-const mapStateToProps = ({ token }) => (
-  { token }
+const mapStateToProps = ({ auth }) => (
+  { auth }
 )
 
 const mapDispatchToProps = {
@@ -19,7 +19,7 @@ const mapDispatchToProps = {
 class Login extends Component {
 
   componentWillReceiveProps(props) {
-    if (props.token) { // eslint-disable-line react/prop-types
+    if (props.auth) {
       browserHistory.push('/dashboard')
     }
   }
@@ -33,12 +33,20 @@ class Login extends Component {
     return (
       <main className={styles.main}>
         <GmailLogin
-          socialId={constants.socialId}
+          socialId={socialId}
           scope={scopes.join(' ')}
         />
       </main>
     )
   }
+}
+
+Login.propTypes = {
+  auth: PropTypes.string,
+}
+
+Login.defaultProps = {
+  auth: undefined,
 }
 
 export default Login

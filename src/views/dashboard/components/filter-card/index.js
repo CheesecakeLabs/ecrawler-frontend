@@ -20,7 +20,7 @@ FilterCard.propTypes = {
 }
 
 FilterCard.defaultProps = {
-  date: null,
+  date: undefined,
   total: 0,
 }
 
