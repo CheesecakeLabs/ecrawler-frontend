@@ -1,9 +1,16 @@
 .outter {
-  width: 100vw;
   background-color: var(--colors-primary);
+  display: flex;
+  justify-content: space-between;
 }
 
 .inner {
   max-width: var(--media-lg);
   padding: 10px;
+}
+
+.logout {
+  background: none;
+  border: none;
+  outline: none;
 }

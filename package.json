@@ -81,6 +81,7 @@
     "express": "^4.14.0",
     "express-static-gzip": "^0.2.2",
     "immutable": "^3.8.1",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "normalize.css": "^5.0.0",
     "react": "^15.1.0",
