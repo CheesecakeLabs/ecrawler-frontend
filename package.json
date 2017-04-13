@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": "",
   "scripts": {
-    "start": "NODE_ENV=production PORT=80 node server.js",
+    "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development PORT=8080 node server.js",
     "build": "npm run build:client && npm run build:server",
     "build:client": "npm run build:vendor && npm run build:production",
