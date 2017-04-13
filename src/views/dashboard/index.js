@@ -56,7 +56,7 @@ class Dashboard extends Component {
     return (
       <article>
         <section>
-          { !this.props.userCreated ? renderUserCreatedMessage() : null }
+          { this.props.userCreated ? renderUserCreatedMessage() : null }
           { renderCrawlerStatus(this.props.isCrawlerLoading) }
         </section>
         <section className={styles.grid}>
