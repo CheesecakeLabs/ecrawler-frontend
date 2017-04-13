@@ -1,3 +1,4 @@
 import Fetch from '@ckldeveloper/fetch'
+import Config from '../config/api'
 
-export default new Fetch('http://localhost:8000/')
+export default new Fetch(Config.API_URL)

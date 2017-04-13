@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@cheesecakelabs/boilerplate@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@cheesecakelabs/boilerplate/-/boilerplate-0.1.0.tgz#261496c2c80115b10b1a11480a03a37dff751901"
+
 "@ckldeveloper/fetch@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ckldeveloper/fetch/-/fetch-2.0.0.tgz#7974f4ea10afc6c760bd2fcb2b991953a4089674"

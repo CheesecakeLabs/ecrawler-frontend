@@ -1,15 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { getFilters, runCrawler } from '../../modules/filters/actions'
+import { getFilters, runCrawler, GET_FILTERS } from '../../modules/filters/actions'
 import FilterCard from './components/filter-card'
 
 import styles from './styles.css'
 
 
-const mapStateToProps = ({ filters }) => (
-  { filters }
-)
+const mapStateToProps = ({ filters, userCreated, loading }) => ({
+  filters,
+  userCreated,
+  isCrawlerLoading: !!loading.get(GET_FILTERS.ACTION),
+})
 
 const mapDispatchToProps = {
   getFilters,
@@ -25,6 +27,19 @@ class Dashboard extends Component {
   }
 
   render() {
+    const renderUserCreatedMessage = () => (
+      <section className={styles.userCreated}>
+        <strong>YOUR ACCOUNT WAS CREATED</strong>
+        <small>Check your mail for credentials and more information</small>
+      </section>
+    )
+
+    const renderCrawlerStatus = (isLoading) => (
+      <section className={`${styles.crawler} ${isLoading ? '' : styles.crawlingDone}`}>
+        CRAWLING
+      </section>
+    )
+
     const renderFilters = filters => (
       filters.map(filter => (
         <div className={styles.item} key={filter.name}>
@@ -36,12 +51,18 @@ class Dashboard extends Component {
         </div>
       ))
     )
+    const filters = (Array.isArray(this.props.filters) && this.props.filters) || []
 
     return (
-      <section className={styles.grid}>
-        <button value="Crawl" onClick={this.onClickHandler} />
-        { renderFilters(this.props.filters || []) }
-      </section>
+      <article>
+        <section>
+          { !this.props.userCreated ? renderUserCreatedMessage() : null }
+          { renderCrawlerStatus(this.props.isCrawlerLoading) }
+        </section>
+        <section className={styles.grid}>
+          { renderFilters(filters) }
+        </section>
+      </article>
     )
   }
 }
@@ -53,13 +74,17 @@ Dashboard.propTypes = {
     total_mails: PropTypes.number,
   })).isRequired,
   getFilters: PropTypes.func.isRequired,
-  runCrawler: PropTypes.func,
+  runCrawler: PropTypes.func.isRequired,
+  userCreated: PropTypes.boolean,
+  isCrawlerLoading: PropTypes.boolean,
 }
 
 Dashboard.defaultProps = {
   filters: [],
   getFilters,
   runCrawler,
+  userCreated: false,
+  isCrawlerLoading: false,
 }
 
 

@@ -7,7 +7,7 @@ import Dashboard from './views/dashboard'
 import NotFound from './views/not-found'
 import { logout } from './modules/auth/actions'
 
-export const isLoggedIn = (user) => user && !!user.auth
+export const isLoggedIn = (user) => user && !!user.auth // Consider also the token expiration time
 
 export const userLoginRequired = store => (nextState, replace) => {
   const user = store.getState()

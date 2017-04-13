@@ -9,7 +9,7 @@ const FilterCard = props => (
   <div className={styles.container}>
     <div className={styles.name}>{props.name}</div>
     <div className={styles.date}>{props.date ? <DateLabel date={props.date} relative /> : 'No emails so far'}</div>
-    <div>{props.total ? `Emails: ${props.total}` : ''}</div>
+    <div className={styles.total}>{props.total ? `total: ${props.total}` : null}</div>
   </div>
 )
 

@@ -1,7 +1,11 @@
 import request from '../../services/request-backend'
 
 const verifyToken = (idToken, accessToken) =>
-  request.post('/api/v1/auth/verify_token/', {}, { id_token: idToken, access_token: accessToken })
+  request.post('/auth/verify_token/', {}, {
+    id_token: idToken,
+    access_token: accessToken,
+    dashboard_url: `${window.location.origin}/dashboard`,
+  })
 /*
 This function has a somewhat complex logic. It executes the following steps:
 1. Load the auth2 module from the google api (gapi) library;
@@ -22,8 +26,8 @@ export const authenticate = (socialId, scope) => (
         .then((user) => {
           const { id_token, access_token } = user.getAuthResponse(true)
           verifyToken(id_token, access_token)
-          .then((token) => {
-            resolve(token)
+          .then(({ token, user_created }) => {
+            resolve({ token, user_created })
           })
         }),
     ))

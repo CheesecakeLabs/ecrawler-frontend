@@ -1,5 +1,5 @@
-import createReducer from '../../utils/create-reducer'
 import { GET_FILTERS } from './actions'
+import createReducer from '../../utils/create-reducer'
 
 const INITIAL_STATE = []
 

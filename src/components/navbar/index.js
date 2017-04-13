@@ -19,12 +19,18 @@ const Navbar = ({ auth }) => (
     <div className={styles.inner}>
       <Image src={logo} height={50} />
     </div>
-    {auth ? (
-      <Link className={styles.logout} to="/logout">
-        <img src={logoutImg} alt="Logout" />
-      </Link>
-    ) : null}
-
+    <div className={styles.rightSide}>
+      <div>
+        <a className={styles.manageFilters} href="http://localhost:8000/admin">Manage Filters</a>
+      </div>
+      <div>
+        {auth ? (
+          <Link className={styles.logout} to="/logout">
+            <img src={logoutImg} alt="Logout" />
+          </Link>
+        ) : null}
+      </div>
+    </div>
   </nav>
 )
 
