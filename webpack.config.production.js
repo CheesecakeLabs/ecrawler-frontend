@@ -19,6 +19,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
+        BACKEND_URL: JSON.stringify(process.env.BACKEND_URL),
       },
     }),
     new webpack.optimize.UglifyJsPlugin({
@@ -83,6 +84,11 @@ module.exports = {
           loader: 'postcss-loader',
         }],
       }),
+    },, {
+      test: /\.(jpe?g|png)$/i,
+      loaders: [
+        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&interlaced=false',
+      ],
     }],
   },
 }
