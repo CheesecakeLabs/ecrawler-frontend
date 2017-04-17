@@ -1,7 +1,5 @@
-const BACKEND_DOMAIN = process.env.BACKEND_DOMAIN || 'localhost:8000'
-
 const Config = {
-  API_URL: `http://${BACKEND_DOMAIN}/`,
+  API_URL: process.env.BACKEND_URL || 'http://localhost:8000/',
 }
 
 export default Config
