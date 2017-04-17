@@ -1,6 +1,6 @@
 {
   "name": "ecrawler-frontend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get informed about your emails.",
   "main": "lib/index.js",
   "license": "MIT",
