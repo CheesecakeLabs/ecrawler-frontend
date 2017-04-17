@@ -10,7 +10,7 @@ import styles from './styles.css'
 const mapStateToProps = ({ filters, userCreated, loading }) => ({
   filters,
   userCreated,
-  isCrawlerLoading: !!loading.get(GET_FILTERS.ACTION),
+  isCrawlerRunning: !!loading.get(GET_FILTERS.ACTION),
 })
 
 const mapDispatchToProps = {
@@ -35,9 +35,7 @@ class Dashboard extends Component {
     )
 
     const renderCrawlerStatus = (isLoading) => (
-      <section className={`${styles.crawler} ${isLoading ? '' : styles.crawlingDone}`}>
-        CRAWLING
-      </section>
+      <section className={`${styles.crawler} ${isLoading ? styles.crawlerRunning : styles.crawlerDone}`} />
     )
 
     const renderFilters = filters => (
@@ -57,7 +55,7 @@ class Dashboard extends Component {
       <article>
         <section>
           { this.props.userCreated ? renderUserCreatedMessage() : null }
-          { renderCrawlerStatus(this.props.isCrawlerLoading) }
+          { filters.length ? renderCrawlerStatus(this.props.isCrawlerRunning) : null }
         </section>
         <section className={styles.grid}>
           { renderFilters(filters) }
@@ -75,16 +73,14 @@ Dashboard.propTypes = {
   })).isRequired,
   getFilters: PropTypes.func.isRequired,
   runCrawler: PropTypes.func.isRequired,
-  userCreated: PropTypes.boolean,
-  isCrawlerLoading: PropTypes.boolean,
+  userCreated: PropTypes.bool.isRequired,
+  isCrawlerRunning: PropTypes.bool.isRequired,
 }
 
 Dashboard.defaultProps = {
   filters: [],
   getFilters,
   runCrawler,
-  userCreated: false,
-  isCrawlerLoading: false,
 }
 
 

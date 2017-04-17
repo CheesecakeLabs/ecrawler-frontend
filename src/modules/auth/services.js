@@ -26,8 +26,8 @@ export const authenticate = (socialId, scope) => (
         .then((user) => {
           const { id_token, access_token } = user.getAuthResponse(true)
           verifyToken(id_token, access_token)
-          .then(({ token, user_created }) => {
-            resolve({ token, user_created })
+          .then(({ token, user_created, admin_url }) => {
+            resolve({ token, user_created, admin_url })
           })
         }),
     ))

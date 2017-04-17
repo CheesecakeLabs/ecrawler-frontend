@@ -38,9 +38,15 @@
     height: 40px;
   }
   25% {
-    background: green;
+    background: rgba(16, 193, 16, 0.92);
     font-size: inherit;
-    height: 30px;
+    height: 40px;
+  }
+  80% {
+    background: rgba(16, 193, 16, 0.92);
+    font-size: inherit;
+    opacity: 1;
+    height: 40px;
   }
   100% {
     font-size: 0;
@@ -50,9 +56,17 @@
   }
 }
 
-.crawlingDone {
+.crawlerRunning::after {
+  content: "UPDATING DASHBOARD - please wait";
+}
+
+.crawlerDone {
   animation-name: crawlerFinished;
   animation-timing-function: ease-out;
-  animation-duration: 2s;
+  animation-duration: 2.5s;
   animation-fill-mode: forwards;
+}
+
+.crawlerDone::after {
+  content: "DASHBOARD IS UP TO DATE";
 }

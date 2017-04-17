@@ -18,6 +18,7 @@ const history = syncHistoryWithStore(browserHistory, store)
 store.subscribe(throttle(() => {
   storageService.saveState({
     auth: store.getState().auth,
+    adminURL: store.getState().adminURL,
   })
 }, 1000))
 
