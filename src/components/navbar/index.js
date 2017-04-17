@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 import Image from '../image'
-
 import styles from './styles.css'
-
 import logo from '../../../assets/img/logo.png'
+import logoutImg from '../../../assets/img/logout.png'
 
-const logoutImg = require('../../../assets/img/logout.png')
-
-
+/*
+  The adminURL state is a URL passed by the backend and saved to the store,
+  so we can use it in the 'Manage Filters' link. Do you agree?
+*/
 const mapStateToProps = ({ auth, adminURL }) => (
   { auth, adminURL }
 )
@@ -42,13 +42,8 @@ const Navbar = ({ auth, adminURL }) => (
 )
 
 Navbar.propTypes = {
-  auth: PropTypes.string,
-  adminURL: PropTypes.string,
-}
-
-Navbar.defaultProps = {
-  auth: undefined,
-  adminURL: '',
+  auth: PropTypes.string.isRequired,
+  adminURL: PropTypes.string.isRequired,
 }
 
 export default connect(mapStateToProps)(Navbar)

@@ -73,14 +73,14 @@ Dashboard.propTypes = {
   })).isRequired,
   getFilters: PropTypes.func.isRequired,
   runCrawler: PropTypes.func.isRequired,
-  userCreated: PropTypes.bool.isRequired,
-  isCrawlerRunning: PropTypes.bool.isRequired,
+  userCreated: PropTypes.bool,
 }
 
 Dashboard.defaultProps = {
   filters: [],
   getFilters,
   runCrawler,
+  userCreated: false,
 }
 
 

@@ -48,8 +48,4 @@ GmailLogin.propTypes = {
   authenticateWithGoogle: PropTypes.func.isRequired,
 }
 
-GmailLogin.defaultProps = {
-  authenticateWithGoogle,
-}
-
 export default GmailLogin
