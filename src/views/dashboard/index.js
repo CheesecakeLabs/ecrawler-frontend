@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { getFilters, runCrawler, GET_FILTERS } from '../../modules/filters/actions'
+import { getFilters, runCrawler } from '../../modules/filters/actions'
 import FilterCard from './components/filter-card'
+import CrawlerStatus from './components/crawler-status'
 
 import styles from './styles.css'
 
 
-const mapStateToProps = ({ filters, userCreated, loading }) => ({
+const mapStateToProps = ({ filters, userCreated }) => ({
   filters,
   userCreated,
-  isCrawlerRunning: !!loading.get(GET_FILTERS.ACTION),
 })
 
 const mapDispatchToProps = {
@@ -34,10 +34,6 @@ class Dashboard extends Component {
       </section>
     )
 
-    const renderCrawlerStatus = (isLoading) => (
-      <section className={`${styles.crawler} ${isLoading ? styles.crawlerRunning : styles.crawlerDone}`} />
-    )
-
     const renderFilters = filters => (
       filters.map(filter => (
         <div className={styles.item} key={filter.name}>
@@ -55,7 +51,7 @@ class Dashboard extends Component {
       <article>
         <section>
           { this.props.userCreated ? renderUserCreatedMessage() : null }
-          { filters.length ? renderCrawlerStatus(this.props.isCrawlerRunning) : null }
+          { filters.length ? <CrawlerStatus /> : null }
         </section>
         <section className={styles.grid}>
           { renderFilters(filters) }
