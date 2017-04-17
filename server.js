@@ -9,7 +9,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware')
 const config = require('./webpack.config')
 const baseHTML = require('./src/index.html')
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 const app = express()
 const compiler = webpack(config)
 

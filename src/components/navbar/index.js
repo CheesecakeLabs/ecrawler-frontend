@@ -42,8 +42,12 @@ const Navbar = ({ auth, adminURL }) => (
 )
 
 Navbar.propTypes = {
-  auth: PropTypes.string.isRequired,
+  auth: PropTypes.string,
   adminURL: PropTypes.string.isRequired,
+}
+
+Navbar.default = {
+  auth: undefined, // auth is undefined when the user is not logged in
 }
 
 export default connect(mapStateToProps)(Navbar)

@@ -3,8 +3,9 @@ const express = require('express')
 // eslint-disable-next-line import/no-extraneous-dependencies
 const webpack = require('webpack')
 const config = require('./webpack.config')
+const baseHTML = require('./src/index.html')
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 
 const app = express()
 const compiler = webpack(config)
@@ -20,7 +21,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 }))
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/index.html'))
+  res.send(baseHTML())
 })
 
 app.listen(port, (err) => {

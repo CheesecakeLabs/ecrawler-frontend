@@ -14,8 +14,4 @@ const appReducer = combineReducers({
   loading,
 })
 
-const rootReducer = (state, action) => (
-  appReducer(state, action)
-)
-
-export default rootReducer
+export default appReducer

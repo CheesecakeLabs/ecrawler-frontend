@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-import { authenticateWithGoogle } from '../../modules/auth/actions'
 import GmailLogin from './components/gmail-login'
 import styles from './styles.css'
 import { socialId } from '../../config/constants'
@@ -11,11 +10,7 @@ const mapStateToProps = ({ auth }) => (
   { auth }
 )
 
-const mapDispatchToProps = {
-  authenticateWithGoogle,
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps)
 class Login extends Component {
 
   componentWillReceiveProps(props) {
