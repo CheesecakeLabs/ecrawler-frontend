@@ -13,8 +13,8 @@ const mapStateToProps = ({ auth }) => (
 @connect(mapStateToProps)
 class Login extends Component {
 
-  componentWillReceiveProps(props) {
-    if (props.auth) {
+  componentWillReceiveProps({ auth }) {
+    if (auth) {
       browserHistory.push('/dashboard')
     }
   }
@@ -34,14 +34,6 @@ class Login extends Component {
       </main>
     )
   }
-}
-
-Login.propTypes = {
-  auth: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-}
-
-Login.defaultProps = {
-  auth: undefined,
 }
 
 export default Login
