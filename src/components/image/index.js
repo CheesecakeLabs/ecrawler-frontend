@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import styles from './styles.css'
 
 
-const Image = (props) => (
+const Image = props => (
   <img
     className={styles.img}
     src={props.src}
@@ -19,5 +19,10 @@ Image.propTypes = {
   alt: PropTypes.string,
 }
 
+Image.defaultProps = {
+  width: null,
+  height: null,
+  alt: 'This is an image',
+}
 
 export default Image

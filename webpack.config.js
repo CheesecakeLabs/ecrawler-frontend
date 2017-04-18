@@ -1,8 +1,7 @@
 const path = require('path')
+
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-const postCSSConfig = require('./postcss.config')
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -20,39 +19,59 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
-        BROWSER: true,
-        BACKEND_DOMAIN: JSON.stringify(process.env.BACKEND_DOMAIN),
-        DRY_RUN: JSON.stringify(process.env.DRY_RUN),
+        BACKEND_URL: JSON.stringify(process.env.BACKEND_URL),
+        SOCIAL_ID: JSON.stringify(process.env.SOCIAL_ID),
+        DEVTOOLS_WINDOW: JSON.stringify(process.env.DEVTOOLS_WINDOW),
       },
     }),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('styles.css'),
   ],
   resolve: {
-    extensions: ['', '.js'],
+    modules: [
+      path.join(__dirname, 'src'),
+      'node_modules',
+    ],
+    extensions: ['.js'],
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
-      loaders: ['babel'],
+      loader: 'babel-loader',
       exclude: /node_modules/,
     }, {
       test: /\.css$/,
       include: /node_modules/,
-      loader: 'style!css!postcss',
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: false,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        }],
+      }),
     }, {
       test: /\.css$/,
       exclude: /node_modules/,
-      loader: ExtractTextPlugin.extract(
-        'style-loader',
-        'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]&sourceMap!postcss-loader' // eslint-disable-line
-      ),
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [{
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            importLoaders: 2,
+            localIdentName: '[name]__[local]___[hash:base64:5]',
+          },
+        }, {
+          loader: 'postcss-loader',
+        }],
+      }),
     }, {
       test: /\.(jpe?g|png)$/i,
       loaders: [
-        'file?hash=sha512&digest=hex&name=[hash].[ext]',
-        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false',
+        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&interlaced=false',
       ],
     }],
   },
-  postcss: () => postCSSConfig,
 }

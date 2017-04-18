@@ -1,0 +1,43 @@
+:root {
+  --orange: rgba(243, 155, 56, 0.92);
+  --green: rgba(16, 193, 16, 0.92);
+}
+
+.notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--orange);
+  height: 40px;
+}
+
+.done {
+  animation-name: crawlerDoneAnimation;
+  animation-timing-function: ease-out;
+  animation-duration: 2.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes crawlerDoneAnimation {
+  0% {
+    background: var(--orange);
+    height: 40px;
+  }
+  25% {
+    background: var(--green);
+    font-size: inherit;
+    height: 40px;
+  }
+  80% {
+    background: var(--green);
+    font-size: inherit;
+    opacity: 1;
+    height: 40px;
+  }
+  100% {
+    font-size: 0;
+    height: 0;
+    opacity: 0;
+    display: none;
+  }
+}

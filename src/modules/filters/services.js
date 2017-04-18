@@ -1,8 +1,5 @@
-import httpClient from '../../services/http-client'
+import request from '../../services/request-backend'
 
+export const list = (key) => request.get('filters/', { key })
 
-export default {
-  list() {
-    return httpClient.get('filters/')
-  },
-}
+export const runCrawler = (key) => request.get('crawl/', { key })

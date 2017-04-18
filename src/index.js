@@ -1,38 +1,31 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { Provider } from 'react-redux'
+import throttle from 'lodash/throttle'
 
-import immutable from 'immutable'
-import immutableDevtools from 'immutable-devtools'
-
+import './bootstrap'
 import configureStore from './store/configure-store'
 import routes from './routes'
+import * as storageService from './services/storage-service'
 
-import './styles/index.css'
+const persistedState = storageService.loadState()
 
-
-const store = configureStore()
+const store = configureStore(persistedState)
 const history = syncHistoryWithStore(browserHistory, store)
 
-if (process.env.NODE_ENV === 'development') {
-  /* eslint-disable global-require */
-  const createDevToolsWindow = require('./utils/dev-tools/create-dev-tools-window').default
-  /* eslint-enable global-require */
-  createDevToolsWindow(store)
-  immutableDevtools(immutable)
-}
-
+store.subscribe(throttle(() => {
+  storageService.saveState({
+    auth: store.getState().auth,
+    adminURL: store.getState().adminURL,
+  })
+}, 1000))
 
 const Root = () => (
   <Provider store={store}>
-    <Router history={history} routes={routes} />
+    <Router history={history} routes={routes(store)} />
   </Provider>
 )
 
-
-ReactDOM.render(
-  <Root store={store} history={history} />,
-  document.getElementById('root')
-)
+render(<Root />, document.getElementById('root'))

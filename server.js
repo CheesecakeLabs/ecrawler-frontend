@@ -1,20 +1,43 @@
-const path = require('path')
 const express = require('express')
-const port = process.env.PORT || 3000
+// eslint-disable-next-line import/no-extraneous-dependencies
+const webpack = require('webpack')
+// eslint-disable-next-line import/no-extraneous-dependencies
+const webpackDevMiddleware = require('webpack-dev-middleware')
+// eslint-disable-next-line import/no-extraneous-dependencies
+const webpackHotMiddleware = require('webpack-hot-middleware')
 
+const config = require('./webpack.config')
+const baseHTML = require('./src/index.html')
+
+const port = process.env.PORT || 8080
 const app = express()
+const compiler = webpack(config)
 
-app.use('/static', express.static('dist'))
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  stats: {
+    colors: true,
+  },
+}))
+
+app.use(webpackHotMiddleware(compiler))
+
+// index.html links to 2 <script> files,
+// one has to be ignored when developing (yarn dev)
+// that's why we route one of them to 404
+app.get('/static/404', (req, res) => {
+  res.status(404).send('')
+})
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/index.html'))
+  res.send(baseHTML())
 })
 
 app.listen(port, (err) => {
   if (err) {
-    console.error(err)
+    console.warn(err)
     return
   }
 
-  console.info('[Production] Node app is running on port', port)
+  console.info(`Listening at http://localhost:${port}`)
 })
