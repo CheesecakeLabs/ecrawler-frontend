@@ -20,11 +20,11 @@ const app = express()
 app.use('/static', expressStaticGzip('dist'))
 
 app.get('*', (req, res) => {
-  match({ routes, location: req.url }, (err, redirect, props) => {
+  const store = configureStore()
+  match({ routes: routes(store), location: req.url }, (err, redirect, props) => {
     if (redirect && !err) {
       res.redirect(redirect.pathname + redirect.search)
     } else {
-      const store = configureStore()
       try {
         const appHtml = renderToString(
           <Provider store={store}>

@@ -1,9 +1,29 @@
 .outter {
-  width: 100vw;
   background-color: var(--colors-primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
 }
 
 .inner {
   max-width: var(--media-lg);
   padding: 10px;
+}
+
+.logout {
+  background: none;
+  border: none;
+  outline: none;
+  margin: 10px 20px 0 0;
+}
+
+.manageFilters {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  margin: 20px;
 }

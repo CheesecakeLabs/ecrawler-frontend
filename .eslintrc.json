@@ -10,9 +10,14 @@
     "no-console": ["error", {
       "allow": ["info", "warn", "error"]
     }],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["**/stories.js", "**/*.dev.js", "**/*.test.js"]
+    }],
     "semi": [2, "never"],
     "no-multiple-empty-lines": 2,
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "arrow-parens": "off"
   },
   "plugins": [
     "react"

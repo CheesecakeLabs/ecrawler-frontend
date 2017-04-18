@@ -1,10 +1,8 @@
-import createReducer from '../../utils/create-reducer'
 import { GET_FILTERS } from './actions'
+import createReducer from '../../utils/create-reducer'
 
 const INITIAL_STATE = []
 
-const filters = createReducer(INITIAL_STATE, {
+export const filters = createReducer(INITIAL_STATE, {
   [GET_FILTERS.FULFILLED]: (state, { payload }) => payload,
 })
-
-export default filters

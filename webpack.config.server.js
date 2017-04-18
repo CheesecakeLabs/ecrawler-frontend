@@ -60,6 +60,11 @@ module.exports = {
           loader: 'postcss-loader',
         }],
       }),
+    }, {
+      test: /\.(jpe?g|png)$/i,
+      loaders: [
+        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&interlaced=false',
+      ],
     }],
   },
 }

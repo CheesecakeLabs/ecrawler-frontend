@@ -19,6 +19,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
+        BACKEND_URL: JSON.stringify(process.env.BACKEND_URL),
+        SOCIAL_ID: JSON.stringify(process.env.SOCIAL_ID),
         DEVTOOLS_WINDOW: JSON.stringify(process.env.DEVTOOLS_WINDOW),
       },
     }),
@@ -68,8 +70,7 @@ module.exports = {
     }, {
       test: /\.(jpe?g|png)$/i,
       loaders: [
-        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&interlaced=false&optimizationLevel=7',
-        'image-webpack-loader?bypassOnDebug',
+        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&interlaced=false',
       ],
     }],
   },

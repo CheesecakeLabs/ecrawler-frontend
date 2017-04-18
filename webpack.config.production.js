@@ -8,7 +8,6 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 const vendorManifest = require('./dist/vendor-manifest.json')
 
 module.exports = {
-  devtool: 'source-map',
   entry: { production: './src/index' },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -19,10 +18,11 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
+        BACKEND_URL: JSON.stringify(process.env.BACKEND_URL),
+        SOCIAL_ID: JSON.stringify(process.env.SOCIAL_ID),
       },
     }),
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
       compress: {
         screw_ie8: true,
         warnings: false,
@@ -83,6 +83,11 @@ module.exports = {
           loader: 'postcss-loader',
         }],
       }),
+    }, {
+      test: /\.(jpe?g|png)$/i,
+      loaders: [
+        'file-loader?hash=sha512&digest=hex&name=[hash].[ext]&interlaced=false',
+      ],
     }],
   },
 }

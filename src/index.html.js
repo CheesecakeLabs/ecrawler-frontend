@@ -16,6 +16,7 @@ module.exports = (initialHtml = '', paths = DEFAULT_PATHS) =>
 </head>
 <body>
   <div id="root">${initialHtml}</div>
+  <script src="/static/${paths.vendor}"></script>
   <script src="/static/${paths.production}"></script>
 </body>
 </html>`

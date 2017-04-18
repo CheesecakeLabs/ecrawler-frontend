@@ -9,7 +9,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware')
 const config = require('./webpack.config')
 const baseHTML = require('./src/index.html')
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 const app = express()
 const compiler = webpack(config)
 
@@ -33,7 +33,7 @@ app.get('*', (req, res) => {
   res.send(baseHTML())
 })
 
-app.listen(port, '0.0.0.0', (err) => {
+app.listen(port, (err) => {
   if (err) {
     console.warn(err)
     return

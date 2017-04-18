@@ -1,18 +1,17 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
+import { loading } from '@cheesecakelabs/boilerplate/reducers'
 
-import filters from './filters/reducers'
-import token from './auth/reducers'
+import { filters } from './filters/reducers'
+import { auth, userCreated, adminURL } from './auth/reducers'
 
 const appReducer = combineReducers({
   routing,
   filters,
-  token,
+  auth,
+  userCreated,
+  adminURL,
+  loading,
 })
 
-const rootReducer = (state, action) => (
-  appReducer(state, action)
-)
-
-
-export default rootReducer
+export default appReducer
