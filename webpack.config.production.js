@@ -19,6 +19,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
         BACKEND_URL: JSON.stringify(process.env.BACKEND_URL),
+        SOCIAL_ID: JSON.stringify(process.env.SOCIAL_ID),
       },
     }),
     new webpack.optimize.UglifyJsPlugin({

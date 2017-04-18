@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 
 import GmailLogin from './components/gmail-login'
 import styles from './styles.css'
-import { socialId } from '../../config/constants'
+import { SOCIAL_ID } from '../../config/environment'
 
 const mapStateToProps = ({ auth }) => (
   { auth }
@@ -28,7 +28,7 @@ class Login extends Component {
     return (
       <main className={styles.main}>
         <GmailLogin
-          socialId={socialId}
+          socialId={SOCIAL_ID}
           scope={scopes.join(' ')}
         />
       </main>

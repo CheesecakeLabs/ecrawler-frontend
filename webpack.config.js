@@ -20,6 +20,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('development'),
         BACKEND_URL: JSON.stringify(process.env.BACKEND_URL),
+        SOCIAL_ID: JSON.stringify(process.env.SOCIAL_ID),
         DEVTOOLS_WINDOW: JSON.stringify(process.env.DEVTOOLS_WINDOW),
       },
     }),

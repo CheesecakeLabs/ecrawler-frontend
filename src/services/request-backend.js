@@ -1,4 +1,5 @@
 import Fetch from '@ckldeveloper/fetch'
-import Config from '../config/api'
+import { API_URL } from '../config/environment'
 
-export default new Fetch(Config.API_URL)
+debugger // eslint-disable-line
+export default new Fetch(API_URL)
