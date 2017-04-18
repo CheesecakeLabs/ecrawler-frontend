@@ -13,6 +13,15 @@ const mapStateToProps = ({ auth }) => (
 @connect(mapStateToProps)
 class Login extends Component {
 
+  static propTypes = {
+    auth: PropTypes.string,
+  }
+
+  static defaultProps = {
+    auth: undefined,
+  }
+
+
   componentWillReceiveProps({ auth }) {
     if (auth) {
       browserHistory.push('/dashboard')

@@ -21,6 +21,21 @@ const mapDispatchToProps = {
 @connect(mapStateToProps, mapDispatchToProps)
 class Dashboard extends Component {
 
+  static propTypes = {
+    filters: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string,
+      last_mail_date: PropTypes.string,
+      total_mails: PropTypes.number,
+    })).isRequired,
+    getFilters: PropTypes.func.isRequired,
+    runCrawler: PropTypes.func.isRequired,
+    userCreated: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    userCreated: false,
+  }
+
   componentWillMount() {
     this.props.getFilters()
     this.props.runCrawler()
@@ -59,21 +74,5 @@ class Dashboard extends Component {
     )
   }
 }
-
-Dashboard.propTypes = {
-  filters: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
-    last_mail_date: PropTypes.string,
-    total_mails: PropTypes.number,
-  })).isRequired,
-  getFilters: PropTypes.func.isRequired,
-  runCrawler: PropTypes.func.isRequired,
-  userCreated: PropTypes.bool,
-}
-
-Dashboard.defaultProps = {
-  userCreated: false,
-}
-
 
 export default Dashboard

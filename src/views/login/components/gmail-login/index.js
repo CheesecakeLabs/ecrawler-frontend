@@ -16,6 +16,12 @@ const mapDispatchToProps = {
 @connect(mapStateToProps, mapDispatchToProps)
 class GmailLogin extends Component {
 
+  static propTypes = {
+    socialId: PropTypes.string.isRequired,
+    scope: PropTypes.string.isRequired,
+    authenticateWithGoogle: PropTypes.func.isRequired,
+  }
+
   componentDidMount() {
     if (!document.querySelector('#google-platform')) {
       const gs = document.createElement('script')
@@ -40,12 +46,6 @@ class GmailLogin extends Component {
       />
     )
   }
-}
-
-GmailLogin.propTypes = {
-  socialId: PropTypes.string.isRequired,
-  scope: PropTypes.string.isRequired,
-  authenticateWithGoogle: PropTypes.func.isRequired,
 }
 
 export default GmailLogin
