@@ -37,7 +37,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  auth: PropTypes.string,
+  auth: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
 }
 
 Login.defaultProps = {

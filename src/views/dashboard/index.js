@@ -45,16 +45,15 @@ class Dashboard extends Component {
         </div>
       ))
     )
-    const filters = (Array.isArray(this.props.filters) && this.props.filters) || []
 
     return (
       <article>
         <section>
           { this.props.userCreated ? renderUserCreatedMessage() : null }
-          { filters.length ? <CrawlerStatus /> : null }
+          { this.props.filters.length ? <CrawlerStatus /> : null }
         </section>
         <section className={styles.grid}>
-          { renderFilters(filters) }
+          { renderFilters(this.props.filters) }
         </section>
       </article>
     )
@@ -73,9 +72,6 @@ Dashboard.propTypes = {
 }
 
 Dashboard.defaultProps = {
-  filters: [],
-  getFilters,
-  runCrawler,
   userCreated: false,
 }
 
